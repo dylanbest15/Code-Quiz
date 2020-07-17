@@ -115,6 +115,25 @@ $(document).ready(function () {
         }
     }
 
+    //correct answer
+    function correctAnswer() {
+        var correct = $("<h2>");
+        main.append(correct);
+        correct.text("Correct!");
+        correct.animate({ opacity: "0" }, 1000);
+    }
+
+    //wrong answer
+    function wrongAnswer() {
+        var wrong = $("<h2>");
+        main.append(wrong);
+        wrong.text("Wrong!");
+        wrong.animate({ opacity: "0"}, 1000);
+
+        //lower timer 10 seconds
+        secondsLeft = secondsLeft - 10;
+    }
+
     //empties the main text
     function nextStage() {
         main.empty();
@@ -134,16 +153,16 @@ $(document).ready(function () {
         setQuestion();
         createQuestion();
 
+        //check for correct answer
         if ($(this).text() === "3. alerts" ||
             $(this).text() === "1. quotes" ||
             $(this).text() === "4. all of the above" ||
             $(this).text() === "3. quotes" ||
             $(this).text() === "4. console.log") {
-            //correct answer
+            correctAnswer();
         }
         else {
-            //incorrect answer
+            wrongAnswer();
         }
     });
-
 });
