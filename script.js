@@ -133,6 +133,17 @@ $(document).ready(function () {
         nextStage();
         setQuestion();
         createQuestion();
+
+        if ($(this).text() === "3. alerts" ||
+            $(this).text() === "1. quotes" ||
+            $(this).text() === "4. all of the above" ||
+            $(this).text() === "3. quotes" ||
+            $(this).text() === "4. console.log") {
+            //correct answer
+        }
+        else {
+            //incorrect answer
+        }
     });
 
 });
