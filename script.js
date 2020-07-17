@@ -21,7 +21,7 @@ $(document).ready(function () {
     }
 
     var question2 = {
-        question: "The condition in an if/else statement is enclosed within _.",
+        question: "The condition in an if/else statement is enclosed within _____.",
         answer1: "1. quotes",
         answer2: "2. curly brackets",
         answer3: "3. parentheses",
@@ -29,7 +29,7 @@ $(document).ready(function () {
     }
 
     var question3 = {
-        question: "Arrays in Javascript can be used to store _.",
+        question: "Arrays in Javascript can be used to store _____.",
         answer1: "1. numbers and strings",
         answer2: "2. other arrays",
         answer3: "3. booleans",
@@ -37,7 +37,7 @@ $(document).ready(function () {
     }
 
     var question4 = {
-        question: "String values must be enclosed within _ when being assigned to variables.",
+        question: "String values must be enclosed within _____ when being assigned to variables.",
         answer1: "1. commas",
         answer2: "2. curly brackets",
         answer3: "3. quotes",
@@ -61,7 +61,7 @@ $(document).ready(function () {
 
             if (secondsLeft === 0) {
                 clearInterval(timerInterval);
-                // run function for time up
+                gameOver();
             }
 
         }, 1000);
@@ -85,12 +85,9 @@ $(document).ready(function () {
             question = question4.question;
             answers = [question4.answer1, question4.answer2, question4.answer3, question4.answer4];
         }
-        else if (questionIndex === 5) {
+        else {
             question = question5.question;
             answers = [question5.answer1, question5.answer2, question5.answer3, question5.answer4];
-        }
-        else {
-            //go to highscore screen
         }
 
         //sets index to next question
@@ -128,7 +125,7 @@ $(document).ready(function () {
         var wrong = $("<h2>");
         main.append(wrong);
         wrong.text("Wrong!");
-        wrong.animate({ opacity: "0"}, 1000);
+        wrong.animate({ opacity: "0" }, 1000);
 
         //lower timer 10 seconds
         secondsLeft = secondsLeft - 10;
@@ -137,6 +134,21 @@ $(document).ready(function () {
     //empties the main text
     function nextStage() {
         main.empty();
+    }
+
+    //ends game
+    function gameOver() {
+        nextStage();
+
+        //set header
+        var header = $("<h1>");
+        main.append(header);
+        header.text("All done!");
+
+        //set final score
+        var score = $("<p>");
+        main.append(score);
+        score.text(`Your final score is ${secondsLeft}`);
     }
 
     //start quiz button
@@ -149,20 +161,26 @@ $(document).ready(function () {
 
     //answer button click events
     $(document).on("click", "button.answerbutton", function () {
-        nextStage();
-        setQuestion();
-        createQuestion();
 
-        //check for correct answer
-        if ($(this).text() === "3. alerts" ||
-            $(this).text() === "1. quotes" ||
-            $(this).text() === "4. all of the above" ||
-            $(this).text() === "3. quotes" ||
-            $(this).text() === "4. console.log") {
-            correctAnswer();
+        if (questionIndex === 6) {
+            gameOver();
         }
         else {
-            wrongAnswer();
+            nextStage();
+            setQuestion();
+            createQuestion();
+
+            //check for correct answer
+            if ($(this).text() === "3. alerts" ||
+                $(this).text() === "1. quotes" ||
+                $(this).text() === "4. all of the above" ||
+                $(this).text() === "3. quotes" ||
+                $(this).text() === "4. console.log") {
+                correctAnswer();
+            }
+            else {
+                wrongAnswer();
+            }
         }
     });
 });
