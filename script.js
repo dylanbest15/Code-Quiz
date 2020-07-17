@@ -11,43 +11,43 @@ var answers = ["1", "2", "3", "4"];
 var questionIndex = 1;
 
 var question1 = {
-    question: "",
-    answer1: "",
-    answer2: "",
-    answer3: "",
-    answer4: "",
+    question: "Commonly used data types DO NOT include:",
+    answer1: "1. strings",
+    answer2: "2. boleans",
+    answer3: "3. alerts",
+    answer4: "4. numbers"
 }
 
 var question2 = {
-    question: "",
-    answer1: "",
-    answer2: "",
-    answer3: "",
-    answer4: "",
+    question: "The condition in an if/else statement is enclosed within _.",
+    answer1: "1. quotes",
+    answer2: "2. curly brackets",
+    answer3: "3. parentheses",
+    answer4: "4. square brackets"
 }
 
 var question3 = {
-    question: "",
-    answer1: "",
-    answer2: "",
-    answer3: "",
-    answer4: "",
+    question: "Arrays in Javascript can be used to store _.",
+    answer1: "1. numbers and strings",
+    answer2: "2. other arrays",
+    answer3: "3. booleans",
+    answer4: "4. all of the above"
 }
 
 var question4 = {
-    question: "",
-    answer1: "",
-    answer2: "",
-    answer3: "",
-    answer4: "",
+    question: "String values must be enclosed within _ when being assigned to variables.",
+    answer1: "1. commas",
+    answer2: "2. curly brackets",
+    answer3: "3. quotes",
+    answer4: "4. parentheses"
 }
 
 var question5 = {
-    question: "",
-    answer1: "",
-    answer2: "",
-    answer3: "",
-    answer4: "",
+    question: "A very useful tool used during development and debugging for printing content to the debugger is:",
+    answer1: "1. Javascript",
+    answer2: "2. terminal / bash",
+    answer3: "3. for loops",
+    answer4: "4. console.log"
 }
 
 //starts timer
