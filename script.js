@@ -6,6 +6,7 @@ $(document).ready(function () {
     // timer variables
     var secondsLeft = 75;
     var timer = $("#timer").text(`Time: ${secondsLeft}`);
+    var timerInterval;
 
     // question and answer variables
     var question;
@@ -15,7 +16,7 @@ $(document).ready(function () {
     var question1 = {
         question: "Commonly used data types DO NOT include:",
         answer1: "1. strings",
-        answer2: "2. boleans",
+        answer2: "2. booleans",
         answer3: "3. alerts",
         answer4: "4. numbers"
     }
@@ -55,13 +56,14 @@ $(document).ready(function () {
     //starts timer
     function setTime() {
 
-        var timerInterval = setInterval(function () {
+            timerInterval = setInterval(function () {
             secondsLeft--;
             timer.text(`Time: ${secondsLeft}`);
 
             if (secondsLeft === 0) {
                 clearInterval(timerInterval);
-                gameOver();
+                var string = "Time's up!";
+                gameOver(string);
             }
 
         }, 1000);
@@ -137,8 +139,10 @@ $(document).ready(function () {
     }
 
     //ends game
-    function gameOver() {
+    function gameOver(string) {
         nextStage();
+        clearInterval(timerInterval);
+        timer.text(`Time: ${secondsLeft}`);
 
         //set header
         var header = $("<h1>");
@@ -149,6 +153,27 @@ $(document).ready(function () {
         var score = $("<p>");
         main.append(score);
         score.text(`Your final score is ${secondsLeft}`);
+
+        //set initials text
+        var initials = $("<p>");
+        main.append(initials);
+        initials.text("Enter initials: ");
+
+        //set input field
+        var input = $("<input type=\"text\">");
+        initials.append(input);
+
+        //set submit button
+        var submit = $("<button>");
+        initials.append(submit);
+        submit.attr("class", "btn btn-primary submitbutton");
+        submit.text("Submit");
+
+        //set string pop up
+        var popup = $("<h2>");
+        main.append(popup);
+        popup.text(string);
+        popup.animate({ opacity: "0" }, 1000);
     }
 
     //start quiz button
@@ -162,24 +187,31 @@ $(document).ready(function () {
     //answer button click events
     $(document).on("click", "button.answerbutton", function () {
 
-        if (questionIndex === 6) {
-            gameOver();
-        }
-        else {
+        if (questionIndex < 6) {
             nextStage();
             setQuestion();
             createQuestion();
 
             //check for correct answer
             if ($(this).text() === "3. alerts" ||
-                $(this).text() === "1. quotes" ||
+                $(this).text() === "3. parentheses" ||
                 $(this).text() === "4. all of the above" ||
-                $(this).text() === "3. quotes" ||
-                $(this).text() === "4. console.log") {
+                $(this).text() === "3. quotes") {
                 correctAnswer();
             }
             else {
                 wrongAnswer();
+            }
+        }
+        else {
+            if ($(this).text() === "4.console.log") {
+                var string = "Correct!";
+                gameOver(string);
+            }
+            else {
+                secondsLeft = secondsLeft - 10;
+                var string = "Wrong!";
+                gameOver(string);
             }
         }
     });
