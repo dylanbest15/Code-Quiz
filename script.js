@@ -270,8 +270,6 @@ $(document).ready(function () {
         var input = $("#input").val();
         highscoreArray.push(`${input} - ${secondsLeft}`);
 
-        //sort highscores
-
         //save highscores to local storage
         localStorage.setItem("highscoreArray", JSON.stringify(highscoreArray));
 
