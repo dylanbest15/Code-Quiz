@@ -8,7 +8,7 @@ $(document).ready(function () {
     var timer = $("#timer").text(`Time: ${secondsLeft}`);
     var timerInterval;
 
-    //highscore array
+    //highscore arrays
     var highscoreArray = [];
     if (localStorage) {
         highscoreArray = JSON.parse(localStorage.getItem("highscoreArray"));
@@ -65,7 +65,7 @@ $(document).ready(function () {
     //starts timer
     function setTime() {
 
-            timerInterval = setInterval(function () {
+        timerInterval = setInterval(function () {
             secondsLeft--;
             timer.text(`Time: ${secondsLeft}`);
 
@@ -260,13 +260,12 @@ $(document).ready(function () {
     });
 
     //submit highscore click event
-    $(document).on("click", "button.submit-button", function() {
+    $(document).on("click", "button.submit-button", function () {
         //save name and score to array
         var input = $("#input").val();
         highscoreArray.push(`${input} - ${secondsLeft}`);
 
         //sort highscores
-        // highscoreArray.sort(function(a, b){return a - b})
 
         //save highscores to local storage
         localStorage.setItem("highscoreArray", JSON.stringify(highscoreArray));
@@ -276,12 +275,12 @@ $(document).ready(function () {
     });
 
     //go back button click event
-    $(document).on("click", "button.back-button", function() {
+    $(document).on("click", "button.back-button", function () {
         location.reload();
     });
 
     //clear highscores button
-    $(document).on("click", "button.clear-button", function() {
+    $(document).on("click", "button.clear-button", function () {
         localStorage.clear();
         highscoreArray = [];
         highScore();
