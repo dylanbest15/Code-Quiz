@@ -41,7 +41,7 @@ main ul {
 /* back button */
 button.back-button {
     position: absolute;
-    left: 40%;
+    left: 10%;
 }
 
 /* clear button */
