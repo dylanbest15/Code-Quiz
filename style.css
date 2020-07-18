@@ -1,0 +1,51 @@
+/* header */
+nav.navbar {
+    margin-bottom: 40px;
+}
+
+/* questions */
+main h1 {
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+/* directions and score */
+main p {
+    text-align: center;
+}
+
+/* start button */
+#start {
+    position: absolute;
+    left: 45%;
+}
+
+/* other buttons */
+main button {
+    text-align: center;
+    margin: 5px;
+}
+
+/* pop ups */
+main h2 {
+    margin-top: 10px;
+}
+
+/* highscores */
+main ul {
+    text-align: center;
+    list-style-type: none;
+    font-size: 36px;
+}
+
+/* back button */
+button.back-button {
+    position: absolute;
+    left: 40%;
+}
+
+/* clear button */
+button.clear-button {
+    position: absolute;
+    left: 55%;
+}
