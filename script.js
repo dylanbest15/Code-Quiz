@@ -227,6 +227,11 @@ $(document).ready(function () {
         createQuestion();
     });
 
+    //view highscores button
+    $("#see-highscores").on("click", function() {
+        highScore();
+    });
+
     //answer button click events
     $(document).on("click", "button.answer-button", function () {
 
