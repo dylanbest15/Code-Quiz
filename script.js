@@ -11,7 +11,10 @@ $(document).ready(function () {
     //highscore array
     var highscoreArray = [];
     if (localStorage) {
-        highscoreArray.push(JSON.parse(localStorage.getItem("highscoreArray")));
+        highscoreArray = JSON.parse(localStorage.getItem("highscoreArray"));
+        if (!highscoreArray) {
+            highscoreArray = [];
+        }
     }
 
     // question and answer variables
@@ -269,6 +272,18 @@ $(document).ready(function () {
         localStorage.setItem("highscoreArray", JSON.stringify(highscoreArray));
 
         //run high score page
-        highScore(input);
+        highScore();
+    });
+
+    //go back button click event
+    $(document).on("click", "button.back-button", function() {
+        location.reload();
+    });
+
+    //clear highscores button
+    $(document).on("click", "button.clear-button", function() {
+        localStorage.clear();
+        highscoreArray = [];
+        highScore();
     });
 });
