@@ -8,6 +8,9 @@ $(document).ready(function () {
     var timer = $("#timer").text(`Time: ${secondsLeft}`);
     var timerInterval;
 
+    //highscore array
+    var highscoreArray = [];
+
     // question and answer variables
     var question;
     var answers = [];
@@ -108,7 +111,7 @@ $(document).ready(function () {
         for (var i = 0; i < answers.length; i++) {
             var newAnswer = $("<button>");
             main.append(newAnswer);
-            newAnswer.attr("class", "btn btn-primary answerbutton");
+            newAnswer.attr("class", "btn btn-primary answer-button");
             newAnswer.text(answers[i]);
             main.append($("<br>"));
         }
@@ -161,12 +164,13 @@ $(document).ready(function () {
 
         //set input field
         var input = $("<input type=\"text\">");
+        input.attr("id", "input");
         initials.append(input);
 
         //set submit button
         var submit = $("<button>");
         initials.append(submit);
-        submit.attr("class", "btn btn-primary submitbutton");
+        submit.attr("class", "btn btn-primary submit-button");
         submit.text("Submit");
 
         //set string pop up
@@ -174,6 +178,39 @@ $(document).ready(function () {
         main.append(popup);
         popup.text(string);
         popup.animate({ opacity: "0" }, 1000);
+    }
+
+    //show high scores
+    function highScore () {
+        nextStage();
+
+        //set header
+        var header = $("<h1>");
+        main.append(header);
+        header.text("Highscores");
+
+        //set list container
+        var list = $("<ul>");
+        main.append(list);
+
+        //set scores
+        for (var i = 0; i < highscoreArray.length; i++) {
+            var score = $("<li>");
+            list.append(score);
+            score.text(`${[i]}. ${highscoreArray[i]} - ${secondsLeft}`);
+        }
+
+        //go back button
+        var back = $("<button>");
+        main.append(back);
+        back.attr("class", "btn btn-primary back-button");
+        back.text("Go back");
+
+        //clear highscores button
+        var clear = $("<button>");
+        main.append(clear);
+        clear.attr("class", "btn btn-primary clear-button");
+        clear.text("Clear Highscores");
     }
 
     //start quiz button
@@ -185,7 +222,7 @@ $(document).ready(function () {
     });
 
     //answer button click events
-    $(document).on("click", "button.answerbutton", function () {
+    $(document).on("click", "button.answer-button", function () {
 
         if (questionIndex < 6) {
             nextStage();
@@ -215,4 +252,17 @@ $(document).ready(function () {
             }
         }
     });
+
+    //submit highscore click event
+    $(document).on("click", "button.submit-button", function() {
+        //save highscore
+        var input = $("#input").val();
+        highscoreArray.push(input);
+
+        //sort highscores
+        highscoreArray.sort(function(a, b){return a - b})
+        
+        //run high score page
+        highScore();
+    })
 });
