@@ -10,6 +10,9 @@ $(document).ready(function () {
 
     //highscore array
     var highscoreArray = [];
+    if (localStorage) {
+        highscoreArray.push(JSON.parse(localStorage.getItem("highscoreArray")));
+    }
 
     // question and answer variables
     var question;
@@ -181,7 +184,7 @@ $(document).ready(function () {
     }
 
     //show high scores
-    function highScore () {
+    function highScore() {
         nextStage();
 
         //set header
@@ -197,7 +200,7 @@ $(document).ready(function () {
         for (var i = 0; i < highscoreArray.length; i++) {
             var score = $("<li>");
             list.append(score);
-            score.text(`${[i]}. ${highscoreArray[i]} - ${secondsLeft}`);
+            score.text(`${i + 1}. ${highscoreArray[i]}`);
         }
 
         //go back button
@@ -255,14 +258,17 @@ $(document).ready(function () {
 
     //submit highscore click event
     $(document).on("click", "button.submit-button", function() {
-        //save highscore
+        //save name and score to array
         var input = $("#input").val();
-        highscoreArray.push(input);
+        highscoreArray.push(`${input} - ${secondsLeft}`);
 
         //sort highscores
-        highscoreArray.sort(function(a, b){return a - b})
-        
+        // highscoreArray.sort(function(a, b){return a - b})
+
+        //save highscores to local storage
+        localStorage.setItem("highscoreArray", JSON.stringify(highscoreArray));
+
         //run high score page
-        highScore();
-    })
+        highScore(input);
+    });
 });
