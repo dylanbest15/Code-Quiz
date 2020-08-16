@@ -3,4 +3,4 @@ This website is a quiz that has 5 multiple choice questions about coding. The us
 
 ![Code-Quiz](screenshot-hw4.png)
 
-https://dylanbest15.github.io/Homework-4-Code-Quiz/
+https://dylanbest15.github.io/Code-Quiz/
